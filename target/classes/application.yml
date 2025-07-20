@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+
+# AI配置
+ai:
+  openai:
+    api-key: ${OPENAI_API_KEY:sk-test}
+    model: gpt-3.5-turbo
+    base-url: ${OPENAI_BASE_URL:https://api.openai.com/v1}
+
+# 审核配置
+content:
+  review:
+    max-retries: 3
+    timeout: 30000
+    sensitive-words: "违法,暴力,色情"
+
+logging:
+  level:
+    com.xiaofuge: DEBUG
